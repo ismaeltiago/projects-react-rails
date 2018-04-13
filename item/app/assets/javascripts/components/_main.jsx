@@ -1,4 +1,6 @@
-
+// import * as stores from './reducers';
+// import Header from './_headers'
+const Header = require('./headers');
 
 // const redux = redux.createRedux(reducers);
 // redux.dispatch(loadLists());

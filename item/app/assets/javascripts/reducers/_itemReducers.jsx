@@ -1,10 +1,11 @@
-import { LOAD_ITEMS } from '../constants';
+// import { LOAD_ITEMS } from '../constants';
 
 const initialState = {
   items: []
 };
 
-export default function items(state = initialState, action) {
+// export default function items(state = initialState, action) {
+function items(state = initialState, action) {
 
   switch(action.type) {
 
