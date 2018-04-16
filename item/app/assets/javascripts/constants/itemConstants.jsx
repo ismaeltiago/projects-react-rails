@@ -1,2 +1,2 @@
-export const ROOT = process.env.NODE_ENV === 'development' ? 'http://localhost:3000': 'https://react-rails-todo.herokuapp.com';
+export const ROOT = 'http://localhost:3000';
 export const LOAD_ITEMS = "LOAD_ITEMS";

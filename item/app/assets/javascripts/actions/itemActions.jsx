@@ -1,4 +1,4 @@
-// import { ROOT, LOAD_ITEM } from '../constants/item';
+import { ROOT, LOAD_ITEMS } from '../constants/itemConstants';
 
 function receiveItems(items) {
   return {

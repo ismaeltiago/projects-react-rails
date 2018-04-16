@@ -1,10 +1,9 @@
-class ItemList extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.handleDelete = this.handleDelete.bind(this);
-    this.onUpdate = this.onUpdate.bind(this);
-    this.handleEdit = this.handleEdit.bind(this);
+class List extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      show: false
+    }
   }
 
   handleDelete(id) {

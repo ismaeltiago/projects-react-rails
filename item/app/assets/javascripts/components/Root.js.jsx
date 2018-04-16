@@ -3,12 +3,17 @@
 // const redux = redux.createRedux(reducers);
 // redux.dispatch(loadLists());
 // debugger
-class Main extends React.Component {
+class Root extends React.Component {
+  constructor() {
+    super();
+    this.state = { show: false };
+  }
+
   render() {
     return (
       <div>
         <Header />
-        <Item />
+        {this.state.show && <Item />}
       </div>
     )
   }
