@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import ItemShow from './Show';
 
 class List extends React.Component {
   constructor() {

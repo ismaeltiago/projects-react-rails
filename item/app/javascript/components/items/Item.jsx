@@ -1,5 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
+import ItemForm from './Form';
+import ItemList from './List';
 
 class Item extends React.Component {
   constructor(props) {

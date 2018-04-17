@@ -1,17 +1,16 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { Provider } from 'react-redux';
+import store from './store';
 import Header from './Header';
 import Item from './items/Item';
 
-// const redux = redux.createRedux(reducers);
-// redux.dispatch(loadLists());
-// debugger
 class Root extends React.Component {
   render() {
     return (
-      <div>
+      <Provider store={store}>
         <Header />
-      </div>
+        <Item />
+      </Provider>
     )
   }
 };

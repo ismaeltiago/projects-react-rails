@@ -7,6 +7,7 @@ class Header extends React.Component {
       <div>
         <h1>Header App</h1>
         <a href='http://localhost:3000'>Item</a> - <a href='http://localhost:3001'>Product</a>
+        <h3>Com REDUX</h3>
       </div>
     )
   }

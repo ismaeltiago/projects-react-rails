@@ -1,3 +1,6 @@
+import React from "react";
+import PropTypes from "prop-types";
+
 class ItemForm extends React.Component {
   constructor(props) {
     super(props);
@@ -80,3 +83,5 @@ class ItemForm extends React.Component {
     )
   }
 };
+
+export default ItemForm;

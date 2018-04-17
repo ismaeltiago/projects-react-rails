@@ -1,3 +1,6 @@
+import React from "react";
+import PropTypes from "prop-types";
+
 class ItemShow extends React.Component {
   constructor(props) {
     super(props);
@@ -20,3 +23,5 @@ class ItemShow extends React.Component {
     )
   }
 };
+
+export default ItemShow;
