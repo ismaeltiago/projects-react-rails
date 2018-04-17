@@ -7,10 +7,12 @@ import Item from './items/Item';
 class Root extends React.Component {
   render() {
     return (
-      <Provider store={store}>
+      <div>
         <Header />
-        <Item />
-      </Provider>
+        <Provider store={store}>
+          <Item />
+        </Provider>
+      </div>
     )
   }
 };
