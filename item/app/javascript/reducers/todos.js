@@ -1,4 +1,6 @@
 import {
+  FETCH_TODOS,
+  FETCH_TODOS_SUCCESS,
   ADD_TODO,
   DELETE_TODO,
   EDIT_TODO,
@@ -7,16 +9,16 @@ import {
   CLEAR_COMPLETED
 } from '../constants/ActionTypes'
 
-const initialState = [
-  {
-    text: 'Use Redux',
-    completed: false,
-    id: 0
-  }
-]
+const initialState = []
 
 export default function todos(state = initialState, action) {
   switch (action.type) {
+    case FETCH_TODOS:// start fetching todos and set loading = true
+      return { ...state, todosList: {todos:[], error: null, loading: true} };
+
+    case FETCH_TODOS_SUCCESS:// return list of todos and make loading = false
+      return { ...state, todosList: {todos: action.payload, error:null, loading: false} };
+
     case ADD_TODO:
       return [
         ...state,
