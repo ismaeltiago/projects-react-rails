@@ -17,7 +17,7 @@ class MainSection extends Component {
             <input
               className="toggle-all"
               type="checkbox"
-              checked={this.props.completedCount === this.props.todosCount}
+              defaultChecked={this.props.completedCount === this.props.todosCount}
             />
             <label onClick={this.props.actions.completeAllTodos}/>
           </span>
