@@ -1,33 +1,40 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Footer from './Footer'
 import VisibleTodoList from '../containers/VisibleTodoList'
 
-const MainSection = ({ todosCount, completedCount, actions }) =>
-  (
-    <section className="main">
-      {
-        !!todosCount && 
-        <span>
-          <input
-            className="toggle-all"
-            type="checkbox"
-            checked={completedCount === todosCount}
+class MainSection extends Component {
+  componentWillMount() {
+    this.props.todos()
+  }
+
+  render() {
+    return (
+      <section className="main">
+        {
+          !!this.props.todosCount && 
+          <span>
+            <input
+              className="toggle-all"
+              type="checkbox"
+              checked={this.props.completedCount === this.props.todosCount}
+            />
+            <label onClick={this.props.actions.completeAllTodos}/>
+          </span>
+        }
+        <VisibleTodoList />
+        {
+          !!this.props.todosCount &&
+          <Footer
+            completedCount={this.props.completedCount}
+            activeCount={this.props.todosCount - this.props.completedCount}
+            onClearCompleted={this.props.actions.clearCompleted}
           />
-          <label onClick={actions.completeAllTodos}/>
-        </span>
-      }
-      <VisibleTodoList />
-      {
-        !!todosCount &&
-        <Footer
-          completedCount={completedCount}
-          activeCount={todosCount - completedCount}
-          onClearCompleted={actions.clearCompleted}
-        />
-      }
-    </section>
-  )
+        }
+      </section>
+    )
+  }
+}
 
 MainSection.propTypes = {
   todosCount: PropTypes.number.isRequired,

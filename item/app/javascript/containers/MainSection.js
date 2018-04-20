@@ -15,9 +15,10 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(TodoActions, dispatch),
   todos: () => {
-    dispatch(fetchTodos()).then((response) => {
-      !response.error ? dispatch(fetchTodosSuccess(response.payload.data)) : dispatch(fetchPostsFailure(response.payload.data));
-    });
+    let { fetchTodosSuccess } = TodoActions
+    dispatch(TodoActions.fetchTodos()).payload.then((response) => {
+      !response.error ? dispatch(fetchTodosSuccess(response)) : dispatch(fetchPostsFailure(response));
+    })
   }
 })
 

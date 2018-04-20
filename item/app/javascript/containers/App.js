@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 import Header from '../components/Header'
 import MainSection from '../components/MainSection'
 import * as TodoActions from '../actions'
-import { fetchTodos, fetchTodosSuccess } from '../actions/index';
 
 const App = ({todos, actions}) => (
   <div>
@@ -20,15 +19,12 @@ App.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  todos: state.todos.todosList
+  todos: state.todos
 })
 
 const mapDispatchToProps = dispatch => ({
-  fetchTodos: () => {
-    dispatch(fetchTodos()).then((response) => {
-      !response.error ? dispatch(fetchTodosSuccess(response.payload.data)) : dispatch(fetchPostsFailure(response.payload.data));
-    });
-  }
+  actions: bindActionCreators(TodoActions, dispatch),
+  loadApplicationState(){ dispatch(loadApplicationState()); }
 })
 
 export default connect(
