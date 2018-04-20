@@ -7,6 +7,7 @@
     "react-test-renderer": "^16.3.1"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "classnames": "^2.2.5",
     "prop-types": "^15.6.1",
     "react": "^16.3.1",
@@ -17,7 +18,7 @@
     "todomvc-app-css": "^2.1.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=3006 react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
     "test": "react-scripts test"

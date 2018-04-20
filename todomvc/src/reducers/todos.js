@@ -1,6 +1,7 @@
 import {
   FETCH_TODOS,
   FETCH_TODOS_SUCCESS,
+  FETCH_TODOS_FAILURE,
   ADD_TODO,
   DELETE_TODO,
   EDIT_TODO,
@@ -18,6 +19,10 @@ export default function todos(state = initialState, action) {
       return state
 
     case FETCH_TODOS_SUCCESS:// return list of todos and make loading = false
+      state = action.payload
+      return state
+
+    case FETCH_TODOS_FAILURE:// return list of todos and make loading = false
       state = action.payload
       return state
 

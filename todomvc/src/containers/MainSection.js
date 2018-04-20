@@ -4,8 +4,6 @@ import { bindActionCreators } from 'redux'
 import MainSection from '../components/MainSection'
 import { getCompletedTodoCount } from '../selectors'
 
-import { fetchTodos, fetchTodosSuccess } from '../actions/index';
-
 const mapStateToProps = state => ({
   todos: state.todos,
   todosCount: state.todos.length,
@@ -15,9 +13,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(TodoActions, dispatch),
   todos: () => {
-    let { fetchTodosSuccess } = TodoActions
+    let { fetchTodosSuccess, fetchTodosFailure } = TodoActions
     dispatch(TodoActions.fetchTodos()).payload.then((response) => {
-      !response.error ? dispatch(fetchTodosSuccess(response)) : dispatch(fetchPostsFailure(response));
+      !response.error ? dispatch(fetchTodosSuccess(response)) : dispatch(fetchTodosFailure(response));
     })
   }
 })

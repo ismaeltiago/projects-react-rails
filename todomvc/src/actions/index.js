@@ -1,3 +1,4 @@
+import axios from 'axios'
 import * as types from '../constants/ActionTypes'
 
 export const addTodo = text => ({ type: types.ADD_TODO, text })
@@ -9,17 +10,24 @@ export const clearCompleted = () => ({ type: types.CLEAR_COMPLETED })
 export const setVisibilityFilter = filter => ({ type: types.SET_VISIBILITY_FILTER, filter})
 
 export function fetchTodos() {
-  const request = $.getJSON('http://localhost:3000/api/v1/todos.json');
+  const request = axios.get('http://localhost:3000/api/v1/todos.json');
 
   return {
     type: types.FETCH_TODOS,
     payload: request
-  };
+  }
 }
 
-export function fetchTodosSuccess(todos) {
+export function fetchTodosSuccess(request) {
   return {
     type: types.FETCH_TODOS_SUCCESS,
-    payload: todos
-  };
+    payload: request.data
+  }
+}
+
+export function fetchTodosFailure(request) {
+  return {
+    type: types.FETCH_TODOS_SUCCESS,
+    payload: request.data
+  }
 }
