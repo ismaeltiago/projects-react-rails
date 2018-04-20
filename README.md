@@ -56,6 +56,9 @@ https://github.com/ismaeltiago/projects-react-rails.git
 ~projects-react-rails/item: rails s
 ```
 
+http://localhost:3000
+
+
 Abra um segundo terminal e execute:
 ```bash
 ~projects-react-rails: cd todomvc
