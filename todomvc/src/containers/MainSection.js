@@ -15,8 +15,10 @@ const mapDispatchToProps = dispatch => ({
   todos: () => {
     let { fetchTodosSuccess, fetchTodosFailure } = TodoActions
     dispatch(TodoActions.fetchTodos()).payload.then((response) => {
-      !response.error ? dispatch(fetchTodosSuccess(response)) : dispatch(fetchTodosFailure(response));
-    })
+      dispatch(fetchTodosSuccess(response))
+    }).catch((error) => {
+      dispatch(fetchTodosFailure(error))
+    });
   }
 })
 

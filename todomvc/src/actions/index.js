@@ -25,9 +25,9 @@ export function fetchTodosSuccess(request) {
   }
 }
 
-export function fetchTodosFailure(request) {
+export function fetchTodosFailure(error) {
   return {
-    type: types.FETCH_TODOS_SUCCESS,
-    payload: request.data
+    type: types.FETCH_TODOS_FAILURE,
+    payload: error
   }
 }

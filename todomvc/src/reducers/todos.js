@@ -23,7 +23,7 @@ export default function todos(state = initialState, action) {
       return state
 
     case FETCH_TODOS_FAILURE:// return list of todos and make loading = false
-      state = action.payload
+      alert(action.payload)
       return state
 
     case ADD_TODO:
