@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from '../containers/Header'
-import MainSection from '../containers/MainSection'
+import MainSection from '../components/MainSection'
 
 const App = () => (
   <div>

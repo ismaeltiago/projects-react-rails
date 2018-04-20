@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@rails/webpacker": "3.4",
+    "axios": "^0.18.0",
     "babel-core": "^6.26.0",
     "babel-preset-react": "^6.24.1",
     "classnames": "^2.2.5",
@@ -11,6 +12,7 @@
     "react-redux-i18n": "^1.9.2",
     "react_ujs": "^2.4.4",
     "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
     "reselect": "^3.0.1",
     "todomvc-app-css": "^2.1.1"
   },
