@@ -1,18 +1,28 @@
 import React from 'react'
 import { createRenderer } from 'react-test-renderer/shallow';
 import MainSection from './MainSection'
+import TodoItem from './TodoItem'
 import Footer from './Footer'
-import VisibleTodoList from '../containers/VisibleTodoList'
+import { SHOW_ALL, SHOW_COMPLETED } from '../constants/TodoFilters'
 
 const setup = propOverrides => {
   const props = Object.assign({
-    todosCount: 2,
-    completedCount: 1,
+    todos: [
+      {
+        text: 'Use Redux',
+        completed: false,
+        id: 0
+      }, {
+        text: 'Run the tests',
+        completed: true,
+        id: 1
+      }
+    ],
     actions: {
       editTodo: jest.fn(),
       deleteTodo: jest.fn(),
       completeTodo: jest.fn(),
-      completeAllTodos: jest.fn(),
+      completeAll: jest.fn(),
       clearCompleted: jest.fn()
     }
   }, propOverrides)
@@ -41,24 +51,28 @@ describe('components', () => {
         const { output } = setup()
         const [ toggle ] = output.props.children[0].props.children
         expect(toggle.type).toBe('input')
-        expect(toggle.props.className).toBe('toggle-all')
         expect(toggle.props.type).toBe('checkbox')
         expect(toggle.props.checked).toBe(false)
       })
 
       it('should be checked if all todos completed', () => {
-        const { output } = setup({
-          completedCount: 2
+        const { output } = setup({ todos: [
+          {
+            text: 'Use Redux',
+            completed: true,
+            id: 0
+          }
+        ]
         })
         const [ toggle ] = output.props.children[0].props.children
         expect(toggle.props.checked).toBe(true)
       })
 
-      it('should call completeAllTodos on change', () => {
+      it('should call completeAll on change', () => {
         const { output, props } = setup()
         const [ , label ] = output.props.children[0].props.children
         label.props.onClick({})
-        expect(props.actions.completeAllTodos).toBeCalled()
+        expect(props.actions.completeAll).toBeCalled()
       })
     })
 
@@ -69,6 +83,16 @@ describe('components', () => {
         expect(footer.type).toBe(Footer)
         expect(footer.props.completedCount).toBe(1)
         expect(footer.props.activeCount).toBe(1)
+        expect(footer.props.filter).toBe(SHOW_ALL)
+      })
+
+      it('onShow should set the filter', () => {
+        const { output, renderer } = setup()
+        const [ , , footer ] = output.props.children
+        footer.props.onShow(SHOW_COMPLETED)
+        const updated = renderer.getRenderOutput()
+        const [ , , updatedFooter ] = updated.props.children
+        expect(updatedFooter.props.filter).toBe(SHOW_COMPLETED)
       })
 
       it('onClearCompleted should call clearCompleted', () => {
@@ -79,24 +103,26 @@ describe('components', () => {
       })
     })
 
-    describe('visible todo list', () => {
+    describe('todo list', () => {
       it('should render', () => {
-        const { output } = setup()
-        const [ , visibleTodoList ] = output.props.children
-        expect(visibleTodoList.type).toBe(VisibleTodoList)
-      })
-    })
-
-    describe('toggle all input and footer', () => {
-      it('should not render if there are no todos', () => {
-        const { output } = setup({
-          todosCount: 0,
-          completedCount: 0
+        const { output, props } = setup()
+        const [ , list ] = output.props.children
+        expect(list.type).toBe('ul')
+        expect(list.props.children.length).toBe(2)
+        list.props.children.forEach((item, i) => {
+          expect(item.type).toBe(TodoItem)
+          expect(item.props.todo).toBe(props.todos[i])
         })
-        const renderedChildren = output.props.children
-        .filter((item) => item !== false)
-        expect(renderedChildren.length).toBe(1)
-        expect(renderedChildren[0].type).toBe(VisibleTodoList)
+      })
+
+      it('should filter items', () => {
+        const { output, renderer, props } = setup()
+        const [ , , footer ] = output.props.children
+        footer.props.onShow(SHOW_COMPLETED)
+        const updated = renderer.getRenderOutput()
+        const [ , updatedList ] = updated.props.children
+        expect(updatedList.props.children.length).toBe(1)
+        expect(updatedList.props.children[0].props.todo).toBe(props.todos[1])
       })
     })
   })

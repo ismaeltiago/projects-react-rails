@@ -2,6 +2,7 @@
   "dependencies": {
     "@rails/webpacker": "3.4",
     "babel-core": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-react": "^6.24.1",
     "classnames": "^2.2.5",
     "prop-types": "^15.6.1",
@@ -15,6 +16,7 @@
     "todomvc-app-css": "^2.1.1"
   },
   "devDependencies": {
+    "babel-preset-env": "^1.6.1",
     "react-scripts": "^1.1.4",
     "react-test-renderer": "^16.3.1",
     "webpack-dev-server": "2.11.2"

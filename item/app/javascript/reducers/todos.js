@@ -1,31 +1,17 @@
-import {
-  FETCH_TODOS,
-  FETCH_TODOS_SUCCESS,
-  ADD_TODO,
-  DELETE_TODO,
-  EDIT_TODO,
-  COMPLETE_TODO,
-  COMPLETE_ALL_TODOS,
-  CLEAR_COMPLETED
-} from '../constants/ActionTypes'
+import { ADD_TODO, DELETE_TODO, EDIT_TODO, COMPLETE_TODO, COMPLETE_ALL, CLEAR_COMPLETED } from '../constants/ActionTypes'
 
-const initialState = []
+const initialState = [];
 
 export default function todos(state = initialState, action) {
   switch (action.type) {
-    case FETCH_TODOS:// start fetching todos and set loading = true
-      state = []
-      return state
-
-    case FETCH_TODOS_SUCCESS:// return list of todos and make loading = false
-      state = action.payload
-      return state
-
+    case 'TODOS_FETCH':
+      return action.payload;
+      
     case ADD_TODO:
       return [
         ...state,
         {
-          id: state.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1,
+          id: action.id,
           completed: false,
           text: action.text
         }
@@ -50,7 +36,7 @@ export default function todos(state = initialState, action) {
           todo
       )
 
-    case COMPLETE_ALL_TODOS:
+    case COMPLETE_ALL:
       const areAllMarked = state.every(todo => todo.completed)
       return state.map(todo => ({
         ...todo,

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import TodoTextInput from './TodoTextInput'
-import { Loc } from 'redux-react-i18n'
 
 export default class Header extends Component {
   static propTypes = {
@@ -17,7 +16,7 @@ export default class Header extends Component {
   render() {
     return (
       <header className="header">
-        <h1><Loc locKey="title"/></h1>
+        <h1>todos</h1>
         <TodoTextInput newTodo
                        onSave={this.handleSave}
                        placeholder="What needs to be done?" />
